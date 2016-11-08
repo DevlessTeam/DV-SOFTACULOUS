@@ -50,7 +50,7 @@
 
 //routes available to only login users
     Route::group(['middleware' => 'user.auth'], function () {
-    
+
         //get list of users
         Route::get('devless_users', 'UserController@get_all_users');
 
@@ -62,7 +62,7 @@
 
      //install service
         Route::get('install_service', 'HubController@get_service');
-        
+
       //app views
         Route::resource('app', 'AppController');
 
@@ -98,3 +98,5 @@
         Route::get('datatable/{entries?}/entries', 'DatatableController@show');
         Route::get('datatable/{entries?}/metas', 'DatatableController@store');
     });
+
+    Route::post('install', 'InstallController@store');
