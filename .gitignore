@@ -1,5 +1,4 @@
 .idea/*
-/vendor
 /storage
 /node_modules
 Homestead.yaml
