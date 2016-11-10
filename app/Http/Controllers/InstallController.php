@@ -40,16 +40,17 @@ class InstallController extends Controller
         //Accept params to configure database for shared hosting
         $content = [
 
-          1 => "DB_CONNECTION=mysql",
-          3 => "DB_DATABASE=$request->database",
-          4 => "DB_USERNAME=$request->username",
-          5 => "DB_PASSWORD=$request->password"
+          29 => "'default' => 'mysql',",
+          69 => "'host' =>  'localhost',",
+          70 => "'database'  => '$request->db_name',",
+          71 => "'username'  => '$request->db_user',",
+          72 => "'password'  => '$request->db_pass',",
 
         ];
 
 
         function edit($content){
-            $filename = base_path('.env');
+            $filename = config_path('database.php');
             chmod($filename, 0777);
             foreach($content as $line => $modifiedContent ) {
                 $line_i_am_looking_for = $line-1;
@@ -59,15 +60,19 @@ class InstallController extends Controller
             }
         }
 
+          // app('App\Http\Controllers\UserController')->post_register($request);
+
         edit($content);
+        $this->show();
+        // return url('/');
 
-        $del = unlink(app_path('Http/Controllers/InstallController.php'));
-
-        if ($del) {
-           return url('/');
-        } else {
-          echo "Error setting up your instance";
-        }
+        // $del = unlink(app_path('Http/Controllers/InstallController.php'));
+        //
+        // if ($del) {
+        //    return url('/');
+        // } else {
+        //   echo "Error setting up your instance";
+        // }
     }
 
     /**
@@ -76,9 +81,19 @@ class InstallController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $conn = \Schema::connection('mysql');
+
+        $conn::create('apps', function ($table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('token')->default(md5(uniqid()));
+            $table->timestamps();
+        });
+        echo 'Done';
     }
 
     /**

@@ -99,4 +99,6 @@
         Route::get('datatable/{entries?}/metas', 'DatatableController@store');
     });
 
-    Route::post('install', 'InstallController@store');
+    Route::post('install', function($db_name){
+      var_dump($db_name);
+    });
