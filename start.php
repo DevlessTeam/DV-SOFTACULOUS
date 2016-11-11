@@ -1,34 +1,84 @@
 <?php
 require __DIR__.'/bootstrap/autoload.php';
 
-        $username = substr(md5(uniqid(rand(1,6))), 0, 13);
-        $password = substr(md5(uniqid(rand(1,6))), 0, 13);
-        $database = substr(md5(uniqid(rand(1,6))), 0, 13);
-        $output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
-        set_dbDetails($database, $username, $password);
-        shell_exec('php artisan migrate');
+    $servername = 'localhost';
+    $username = $_POST['db_user'];
+    $password = $_POST['db_pass'];
+    $dbname = $_POST['db_name'];
 
-        function set_dbDetails($database, $username, $password)
-        {
-            //add code here
-             $content = [
-                29 => "'default' => 'mysql',",
-                70 => "'database'  => '$database',",
-                71 => "'username'  => '$username',",
-                72 => "'password'  => '$password',",
+    $app_name = $_POST['app_name'];
+    $email = $_POST['email'];
+    $hash = password_hash($_POST["password"], PASSWORD_BCRYPT, array('cost' => 10));
 
-            ];
-            function edit($content){
-                $filename = __DIR__.'/config/database.php';
-                chmod($filename, 0777);
-                foreach($content as $line => $modifiedContent ) {
-                    $line_i_am_looking_for = $line-1;
-                    $lines = file( $filename , FILE_IGNORE_NEW_LINES );
-                    $lines[$line_i_am_looking_for] = $modifiedContent;
-                    file_put_contents( $filename , implode( "\n", $lines ) );//check token and keys
+    $content = [
 
-                }
+        29 => "'default' => 'mysql',",
+        69 => "'host'     => 'localhost',",
+        70 => "'database'  => '$dbname',",
+        71 => "'username'  => '$username',",
+        72 => "'password'  => '$password',",
 
-            }
-            edit($content);
+    ];
+
+
+    function edit($content){
+        $filename = __DIR__.'/config/database.php';
+        chmod($filename, 0777);
+        foreach($content as $line => $modifiedContent ) {
+            $line_i_am_looking_for = $line-1;
+            $lines = file( $filename , FILE_IGNORE_NEW_LINES );
+            $lines[$line_i_am_looking_for] = $modifiedContent;
+            file_put_contents( $filename , implode( "\n", $lines ) );
+
         }
+
+    }
+
+    edit($content);
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // sql to create table
+    $sql = "devless_production.sql";
+
+    $templine = '';
+    $lines = file($sql);
+
+    foreach ($lines as $line)
+    {
+    // Skip it if it's a comment
+    if (substr($line, 0, 2) == '--' || $line == '')
+        continue;
+
+      // Add this line to the current segment
+      $templine .= $line;
+      // If it has a semicolon at the end, it's the end of the query
+      if (substr(trim($line), -1, 1) == ';')
+      {
+
+        if ($conn->query($templine) != TRUE) {
+          echo "Error creating tables: " . $conn->error;
+        }
+
+        $templine = '';
+      }
+
+    }
+
+    $db = "INSERT INTO users (email, password, role, status)
+    VALUES ('$email', '$hash', 1, 0);";
+
+    $db .= "INSERT INTO apps (name)
+    VALUES ('$app_name');";
+
+    $conn->multi_query($db);
+
+    $conn->close();
+
+    header("Location: http://".$_SERVER["HTTP_HOST"].'/');
+    

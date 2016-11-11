@@ -98,5 +98,3 @@
         Route::get('datatable/{entries?}/entries', 'DatatableController@show');
         Route::get('datatable/{entries?}/metas', 'DatatableController@store');
     });
-
-    Route::post('install', 'InstallController@store');
