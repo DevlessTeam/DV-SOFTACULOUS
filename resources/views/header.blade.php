@@ -6,7 +6,9 @@
     <meta name="description" content="Devless is a backend as a service framework that provide developers an easier way to rollout their web and mobile platform ">
     <meta name="author" content="Devless">
     <meta name="keyword" content="Devless, opensource, BAAS, Backend as a service, robust, php, laravel ">
-    <link rel="shortcut icon" href="javascript:;" type="image/png">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <title>Devless 1.1.2 </title>
 
