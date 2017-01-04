@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Devless is a backend as a service framework that provide developers an easier way to rollout their web and mobile platform ">
+    <meta name="author" content="Devless">
+    <meta name="keyword" content="Devless, opensource, BAAS, Backend as a service, robust, php, laravel ">
+    <link rel="shortcut icon" href="javascript:;" type="image/png">
+
+    <title>Devless 1.1.2 </title>
+
+    <!--right slidebar-->
+    <link href="/css/slidebars.css" rel="stylesheet">
+
+    <!--switchery-->
+    <link href="/js/switchery/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <!--Form Wizard-->
+    <link rel="stylesheet" type="text/css" href="/css/jquery.steps.css" />
+
+    <!--common style-->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+      <style media="screen">
+        @media screen and (min-width: 768px) {
+            #imgtop {
+                position: fixed;
+                left: 0;
+            }
+
+            section .panel {
+                top: 50px;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            section .panel {
+                top: 50px;
+            }
+        }
+
+        @media screen and (min-width: 993px) and (max-width: 1199px) {
+            section .panel {
+                left: -200px;
+            }
+        }
+    </style>
+</head>
+<body onload="init()" class="sticky-header">
+
+    <section>
+
+    <!--body wrapper start-->
+    <div class="wrapper">
+      <div class="row">
+        <a href="https://devless.io">
+          <img src="/img/logo.png" class="setup-logo" alt="Devless">
+        </a>
+        <div class="col-lg-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+          <section class="panel">
+            <header class="panel-heading">
+              DB & App Setup
+            </header>
+            <div class="panel-body">
+              <form action="start.php" class="form-horizontal" method="POST">
+                <div class="form-group">
+                    <label for="db_name" class="col-lg-2 control-label">DB Name</label>
+                    <div class="col-lg-10">
+                      <input type="text" id="db_name-field" name="db_name" class="form-control" required="">
+                    </div>
+                </div>
+                <div class="form-group" >
+                  <label for="db_user" class="col-lg-2 control-label">DB User</label>
+                  <div class="col-lg-10">
+                    <input type="text" id="db_user-field" name="db_user" class="form-control" required="">
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <label for="db_pass" class="col-lg-2 control-label">DB Pass</label>
+                  <div class="col-lg-10">
+                    <input type="text" id="db_pass-field" name="db_pass" class="form-control" required="">
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                  <label for="password_confirmation" class="col-lg-2 control-label"  >App Name</label>
+                  <div class="col-lg-10">
+                    <input type="text" id="app_name-field" name="app_name" class="form-control" required="" value="My Backend">
+                  </div>
+                </div>
+
+                <div class="form-group" >
+                  <label for="email" class="col-lg-2 control-label">Email</label>
+                  <div class="col-lg-10">
+                    <input type="email" id="email-field" name="email" class="form-control" required="">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="col-lg-2 control-label"  >Password</label>
+                  <div class="col-lg-10">
+                    <input type="password" class="form-control" name="password" required="">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-info pull-right">Create App</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+</section>
+  </body>
+</html>

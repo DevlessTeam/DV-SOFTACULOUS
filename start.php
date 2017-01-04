@@ -11,18 +11,24 @@ require __DIR__.'/bootstrap/autoload.php';
     $hash = password_hash($_POST["password"], PASSWORD_BCRYPT,
         array('cost' => 10));
 
+    // $content = [
+    //     29 => "'default' => 'mysql',",
+    //     74 => "'host'     => 'localhost',",
+    //     75 => "'database'  => '$dbname',",
+    //     76 => "'username'  => '$username',",
+    //     77 => "'password'  => '$password',",
+    // ];
+
     $content = [
-        29 => "'default' => 'mysql',",
-        74 => "'host'     => 'localhost',",
-        75 => "'database'  => '$dbname',",
-        76 => "'username'  => '$username',",
-        77 => "'password'  => '$password',",
+        7 => "DB_DATABASE=$dbname",
+        8 => "DB_USERNAME=$username",
+        9 => "DB_PASSWORD=$password"
     ];
 
 
     function edit($content){
-        $filename = __DIR__.'/config/database.php';
-        chmod($filename, 0777);
+        $filename = __DIR__.'/.env';
+        // chmod($filename, 0777);
         foreach($content as $line => $modifiedContent ) {
             $line_i_am_looking_for = $line-1;
             $lines = file( $filename , FILE_IGNORE_NEW_LINES );
@@ -78,3 +84,5 @@ require __DIR__.'/bootstrap/autoload.php';
     $conn->close();
 
     header("Location: http://".$_SERVER["HTTP_HOST"].'/');
+
+    unlink('index.html');
