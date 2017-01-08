@@ -83,6 +83,7 @@ require __DIR__.'/bootstrap/autoload.php';
 
     $conn->close();
 
-    header("Location: http://".$_SERVER["HTTP_HOST"].'/');
-
+    header("Location: http://".$_SERVER["HTTP_HOST"].'/'
+        .str_replace("/start.php", "", $_SERVER["REQUEST_URI"]).'/index.php');
     unlink('index.html');
+    unlink('start.php');
