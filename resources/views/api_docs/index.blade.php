@@ -167,8 +167,8 @@
             </div>
             <button type="button" id="scroll" name="button" class="btn btn-warning pull-right">Scroll Up</button>
         </div>
-        <script src="{{ Request::secure(Request::root()).'/js/src-min-noconflict/ace.js' }}" type="text/javascript" charset="utf-8"></script>
-        <script src="{{ Request::secure(Request::root()).'/js/ace/jquery-1.8.3.min.js' }}" type="text/javascript" charset="utf-8"></script>
+        <script src="<?= str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]) ?>js/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?= str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]) ?>js/ace/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
         <script>
         window.onload(function () {
             document.getElementById('query').style.display = 'none';
@@ -201,7 +201,7 @@
             //texteditor for payload
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/xcode");
-            editor.getSession().setMode("ace/mode/json");
+            editor.getSession().setMode("ace/modejson");
             // Handles the form rendering
             var request_type;
             var table_name;

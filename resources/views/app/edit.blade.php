@@ -106,7 +106,7 @@
                                     @endif
                                 </div>
                             </div>
-                             
+
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <!-- Button trigger modal -->
@@ -123,7 +123,7 @@
         </div>
     </div>
     <!--body wrapper end-->
-    
+
 <!-- Modal -->
 <div class="modal fade" id="connect-to-app" tabindex="-1" role="dialog" aria-labelledby="Label" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -147,19 +147,19 @@
                                  <pre>
 <code class="language-markup"><xmp style="word-wrap: break-word;
 ">
-<script src="{{URL::to('/')}}/js/devless-sdk.js" class="devless-connection" devless-con-token="{{$app->token}}"></script>
+<script src="<?= str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]) ?>js/devless-sdk.js" class="devless-connection" devless-con-token="{{$app->token}}"></script>
 
 </xmp></code></pre>
-                                
+
                             </div>
                             <div class="tab-pane" id="android"><center>NA</center></div>
 			  <div class="tab-pane" id="ios"><center>NA</center></div>
                                   <div class="tab-pane" id="raw"><center>
-                                          Domain: 
+                                          Domain:
                               </center></div>
 			</div>
       </div>
-      
+
     </div>
   </div>
 </div>

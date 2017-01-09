@@ -5,7 +5,7 @@
 <div class="page-head">
     <h3>Hub</h3>
     <span class="sub-title">Hub/</span>
-    <form method="post" action="index.html" class="search-content">
+    <form method="post" action="#" class="search-content">
         <input type="text" placeholder="Search module or service..." name="keyword" class="form-control">
     </form>
 </div>
@@ -26,7 +26,7 @@
             <div class="name column-name">
               <h3>
                 <a href="#" data-toggle="modal" data-target="#service-desc">
-                    <!--src="{{$service['image_url']}}"--> 
+                    <!--src="{{$service['image_url']}}"-->
                     {{$service['name']}}<img width=2 class="plugin-icon img-responsive" src="{{$service['image_url']}}" alt="N/A">
                 </a>
               </h3>
@@ -45,12 +45,12 @@
               <p class="authors"><cite>By <a href="#">{{$service['author']}}</a></cite></p>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
             @endforeach
-       
+
     @else
-       <h3 class="text-center alert alert-info">Sorry Services could not be fetched !</h3> 
+       <h3 class="text-center alert alert-info">Sorry Services could not be fetched !</h3>
             @endif
     </div>
 </div><!--body wrapper end-->
@@ -70,28 +70,28 @@
                       setTimeout(function  () {
                           $('#notif').modal('hide');
                       },3000)
-                      
+
                        $('#'+service_name).html('Installed').closest('button').attr('disabled', 'true');
                    }
                })
            }
            function httpGetAsync(theUrl, callback){
 {               var xmlHttp = new XMLHttpRequest();
-                xmlHttp.onreadystatechange = function() { 
+                xmlHttp.onreadystatechange = function() {
                     if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                         callback(xmlHttp.responseText);
                 }
-                xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+                xmlHttp.open("GET", theUrl, true); // true for asynchronous
                 xmlHttp.send(null);
 }           }
 </script>
 
 
-<div class="modal fade" id="notif" tabindex="-1" role="dialog" 
+<div class="modal fade" id="notif" tabindex="-1" role="dialog"
    aria-labelledby="myModalLabel" aria-hidden="true" >
    <div class="modal-dialog" style="width:250px;height:3%;">
       <div class="modal-content" style="background-color:#7BE454;">
-        
+
          <div class="modal-body">
             <div id="left">
       <div>
@@ -100,14 +100,12 @@
             Check services menu <br>
            If service not installed, Please Try again.</font></p>
     </center>
-   
+
          </div>
-        
+
       </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
 </div>
 @endsection
-
-

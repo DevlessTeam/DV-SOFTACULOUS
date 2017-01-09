@@ -30,7 +30,7 @@
     <div class="wrapper">
       <div class="row">
         <a href="https://devless.io">
-          <img src="{{Request::secure(Request::root()).'/img/logo.png'}}" class="setup-logo" alt="Devless">
+          <img src="<?= str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]) ?>img/logo.png" class="setup-logo" alt="Devless">
         </a>
         <div class="col-lg-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
           <section class="panel">
