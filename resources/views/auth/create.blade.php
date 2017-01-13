@@ -30,45 +30,24 @@
     <div class="wrapper">
       <div class="row">
         <a href="https://devless.io">
-          <img src="<?= str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]) ?>img/logo.png" class="setup-logo" alt="Devless">
+          <img src="{{Request::secure(Request::root()).'img/logo.png'}}" class="setup-logo" alt="Devless">
         </a>
         <div class="col-lg-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
           <section class="panel">
             <header class="panel-heading">
-              DB & App Setup
+              App Setup
             </header>
             <div class="panel-body">
-              <form action="{{ url('/install') }}" class="form-horizontal" method="POST">
-                <div class="form-group @if($errors->has('db_name')) has-error @endif">
-                    <label for="db_name" class="col-lg-2 control-label">DB Name</label>
-                    <div class="col-lg-10">
-                      <input type="text" id="db_name-field" name="db_name" class="form-control" required="">
-                         @if($errors->has("db_name"))
-                            <span class="help-block">{{ $errors->first("db_name") }}</span>
-                         @endif
-                    </div>
-                </div>
-                <div class="form-group @if($errors->has('db_user')) has-error @endif" >
-                  <label for="db_user" class="col-lg-2 control-label">DB User</label>
+              <form action="{{ url('/setup') }}" class="form-horizontal" method="POST">
+                <div class="form-group @if($errors->has('username')) has-error @endif" >
+                  <label for="username" class="col-lg-2 control-label">Username</label>
                   <div class="col-lg-10">
-                    <input type="text" id="db_user-field" name="db_user" class="form-control" required="">
-                    @if($errors->has("db_user"))
-                      <span class="help-block">{{ $errors->first("db_user") }}</span>
+                    <input type="text" id="username-field" name="username" class="form-control" required="">
+                    @if($errors->has("username"))
+                      <span class="help-block">{{ $errors->first("username") }}</span>
                     @endif
                   </div>
                 </div>
-                <div class="form-group @if($errors->has('db_pass')) has-error @endif" >
-                  <label for="db_pass" class="col-lg-2 control-label">DB Pass</label>
-                  <div class="col-lg-10">
-                    <input type="text" id="db_pass-field" name="db_pass" class="form-control" required="">
-                    @if($errors->has("db_pass"))
-                      <span class="help-block">{{ $errors->first("db_pass") }}</span>
-                    @endif
-                  </div>
-                </div>
-
-                <hr>
-
                 <div class="form-group @if($errors->has('email')) has-error @endif" >
                   <label for="email" class="col-lg-2 control-label">Email</label>
                   <div class="col-lg-10">
@@ -99,11 +78,33 @@
                   </div>
                 </div>
 
-
-                    <input type="hidden" id="app_name-field" name="app_name" class="form-control" required="" value="My Backend">
-
-                    <input type="hidden" id="app_token-field" name="app_token" class="form-control" readonly="" value="{{$app['app_token']}}">
-
+                <div class="form-group @if($errors->has('app_name')) has-error @endif" >
+                  <label for="app_name" class="col-lg-2 control-label">App Name</label>
+                  <div class="col-lg-10">
+                    <input type="text" id="app_name-field" name="app_name" class="form-control" required="">
+                    @if($errors->has("app_name"))
+                      <span class="help-block">{{ $errors->first("app_name") }}</span>
+                    @endif
+                  </div>
+                </div>
+                <div class="form-group @if($errors->has('app_description')) has-error @endif">
+                    <label for="app_description" class="col-lg-2 control-label">App Description</label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" id="app_description-field" rows="3" name="app_description"></textarea>
+                         @if($errors->has("app_description"))
+                            <span class="help-block">{{ $errors->first("app_description") }}</span>
+                         @endif
+                    </div>
+                </div>
+                <div class="form-group @if($errors->has('app_token')) has-error @endif" >
+                  <label for="app_token" class="col-lg-2 control-label">App Token</label>
+                  <div class="col-lg-10">
+                    <input type="text" id="app_token-field" name="app_token" class="form-control" readonly="" value="{{$app['app_token']}}">
+                    @if($errors->has("app_token"))
+                      <span class="help-block">{{ $errors->first("app_token") }}</span>
+                    @endif
+                  </div>
+                </div>
 
                 <div class="form-group">
                   <div class="col-lg-offset-2 col-lg-10">

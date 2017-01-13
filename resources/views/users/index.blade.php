@@ -20,34 +20,34 @@
 
         <table class="table">
             <thead>
-            <tr>
-                 <th>ID</th>
-                <th>User Name</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-            <tbody>
+                <tr>
+                   <th>ID</th>
+                   <th>User Name</th>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Phone Number</th>
+                   <th>Email</th>
+               </tr>
+           </thead>
+           <tbody>
 
-             @if($users->count()> 1)
-                @foreach($users as $user)
-                    @if($user->id != 1)
-                        <tr>  
-                         <td>{{$user->id}}</td>
-                         <td>{{substr($user->username,0,10)}}</td>
-                         <td>{{substr($user->first_name,0,10)}}</td>
-                         <td>{{substr($user->last_name,0,10)}}</td>
-                         <td>{{substr($user->phone_number,0,10)}}</td>
-                         <td>{{substr($user->email,0,10)}}</td>
-                        </tr> 
-                    @endif
-                @endforeach
-             @endif       
+               @if($users->count()> 1)
+               @foreach($users as $user)
+               @if($user->id != 1)
+               <tr>  
+                   <td>{{$user->id}}</td>
+                   <td>{{substr($user->username,0,10)}}</td>
+                   <td>{{substr($user->first_name,0,10)}}</td>
+                   <td>{{substr($user->last_name,0,10)}}</td>
+                   <td>{{substr($user->phone_number,0,10)}}</td>
+                   <td>{{substr($user->email,0,10)}}</td>
+               </tr> 
+               @endif
+               @endforeach
+               @endif       
 
-            </tbody>
-        </table>
-    </section>
-                </div>
+           </tbody>
+       </table>
+   </section>
+</div>
 @endsection
